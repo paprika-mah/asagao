@@ -9,15 +9,15 @@ class MembersController < ApplicationController
   end
 
   # # 検索
-  # def search
-  #   @members = Member.search(params[:q])
-  #     .page(params[:page]).per(15)
+  def search
+    @members = Member.search(params[:q])
+      # .page(params[:page]).per(15)
 
-  #   render "index"
-  # end
+    render "index"
+  end
 
-  # # 会員情報の詳細
-  # def show
-  #   @member = Member.find(params[:id])
-  # end
+  # 会員情報の詳細
+  def show
+    @member = Member.find(params[:id])
+  end
 end
