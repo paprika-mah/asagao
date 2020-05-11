@@ -3,15 +3,15 @@ class MembersController < ApplicationController
 
   # # 会員一覧
   def index
-    # @members = Member.order("number")
-      # .page(params[:page]).per(15)
     @members = Member.order("number")
+      .page(params[:page]).per(15)
+    # @members = Member.order("number")
   end
 
   # # 検索
   def search
     @members = Member.search(params[:q])
-      # .page(params[:page]).per(15)
+      .page(params[:page]).per(15)
 
     render "index"
   end
