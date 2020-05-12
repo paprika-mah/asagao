@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "top#index"
   get "about" => "top#about", as: "about"
+  get "bad_request" => "top#bad_request"
+  get "forbidden" => "top#forbidden"
+  get "internal_server_error" => "top#internal_server_error"
 
   1.upto(18) do |n|
     get "lesson/step#{n}(/:name)" => "lesson#step#{n}"
@@ -16,5 +19,9 @@ Rails.application.routes.draw do
   resource :password, only: [:show, :edit, :update]
 
   resources :articles
-  resources :entries
+  resources :entries do
+    resources :images, controller: "entry_images" do
+      patch :move_higher, :move_lower, on: :member
+    end
+  end
 end
